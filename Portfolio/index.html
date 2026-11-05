@@ -5,22 +5,39 @@
         <title>KAUSHAL RANA - Portfolio</title>
     </head>
     <body>
-        <header>
-            <h1>Hi! I'm KAUSHAL RANA</h1>
-            <nav>
-                <p>This is my Portfolio.</p>
-                <a href="#about">About Me</a>
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
+        <canvas id="matrixRain"></canvas>
+
+        <header class="cyb">
+            <a href="#home" class="logo">&lt;ECKR/&gt;</a>
+            <nav id="navLinks" class="nav-links">
+                <button id="menuBtn" class="menu-btn">
+                <a href="#about">About</a></button>
+                <button id="menuBtn" class="menu-btn">
+                <a href="#skills">Skills</a></button>
+                <button id="menuBtn" class="menu-btn">
+                <a href="#experience">Experience</a></button>
+                <button id="menuBtn" class="menu-btn">
+                <a href="#projects">Projects</a></button>
+                <button id="menuBtn" class="menu-btn">
+                <a href="#contact">Contact</a></button>
+                
             </nav>
+            
         </header>
 
         <main>
+            <section id="home" class="bot">
+                <div class="bot-text">
+                    <p class="small-title">Hello, I am</p>
+                    <h1>Kaushal Rana</h1>
+                    <p class="subtitle" id="typedText"></p>
+                 </div>
+            </section>
+            <p class="subtitle" id="matrixRain"></p>
             <section id="about">
                 <h2>About Me</h2>
-                <p>I'm Kaushal Rana, I work in ethical hacking, security analysis and network operations, with hands-on experience in intrusion detection, incident response and web application testing. I also enjoy graphic design and web development.</p>
-                <p>I am passionate about technology, artificial intelligence,cyber security, robotics, and software development.I am continuously learning programming, AI, electronics, and automation to understand how technology works and build innovative real-world solutions. My goal is to become a skilled technology developer, turn creative ideas into practical projects, and contribute to the future of AI and robotics.</p>
+                <p>I work in ethical hacking, security analysis and network operations, with hands-on experience in intrusion detection, incident response and web application testing. I also enjoy graphic design and web development.</p>
+                <p>I am passionate about technology, artificial intelligence, cyber security, robotics, and software development. I am continuously learning programming, AI, electronics, and automation to understand how technology works and build innovative real-world solutions. My goal is to become a skilled technology developer, turn creative ideas into practical projects, and contribute to the future of AI and robotics.</p>
             </section>
             <section id="skills">
                 <h2>Skills</h2>
@@ -44,16 +61,66 @@
                     <li>Burp Suite</li>
                     <li>OWASP ZAP</li>
                 </ul>
-                <h4>Graphic Design Tools</h4>
+                <h3>Graphic Design Tools</h3>
                 <ul>
                     <li>Adobe Photoshop</li>
-                    <li>Adobe Illustrator</li>
+                    <li>Affinity</li>
                     <li>CorelDRAW</li>
                     <li>Canva</li>
                 </ul>
             </section>
-            
+            <section id="experience">
+                <h2>Training &amp; Certifications</h2>
+                <article>
+                    <h3>Ethical Hacking Training - Hackingflix &amp; Deepak Cyber Solutions</h3>
+                    <p>I have completed several training programs in Ethical Hacking, covering web application security, penetration testing and responsible vulnerability disclosure and obtained certifications in ethical hacking and cybersecurity.</p>
+                    <ul>
+                        <li>Identified and exploited common web application vulnerabilities, including SQL injection and cross-site scripting (XSS), during assessments.</li>
+                        <li>Practiced bug bounty methodologies, including scope analysis and responsible disclosure of high-severity findings.</li>
+                        <li>Simulated real-world penetration tests on corporate network environments and recommended mitigation strategies.</li>
+                        <li>Gained hands-on experience with security tools such as Burp Suite, OWASP ZAP, and Metasploit for vulnerability scanning and exploitation.</li>
+                        <li>Learned to analyze and interpret security logs, identify potential threats, and respond to incidents effectively.</li>
+                    </ul>
+                </article>
+            </section>
+            <section id="projects">
+                <h2>Projects</h2>
+                <article>
+                    <h3>Portfolio Website - AI Chatbot Assistant</h3>
+                    <p>Built this site from the scratch: HTML, CSS, Javascript on the frontend and with python Flask Flask backend serving an animated AI chatbot with text-to-speech capabilities. Version-controlled with Git and deployed on a cloud platform. The AI chatbot is designed to provide information about my skills, experience, and projects, and can answer questions related to my portfolio.</p>
+                    <a href="github link">Project Portfolio</a>
+                </article>
+                <article>
+                    <h3>AI Slide Animation Creator</h3>
+                    <p>Developed a tool to create animated slides for presentations using AI-powered design suggestions and seamless integration with popular presentation software.</p>
+                    <a href="github link">Project AI Slide Animation Creator</a>
+                </article>
+                <articale>
+                    <h3>Digital Forensics Investigation</h3>
+                    <p>Investigated a case of Self-directed/Lab using Autopsy for file and disk analysis, and Maltego for OSINT mapping. This is done for security to be safe and secure myself digitaly in an internet world.</p>                               
+                </articale>
+                <article>
+                    <h3>Network Security Monitoring</h3>
+                    <p>Implemented a network security monitoring system using open-source tools like Snort and Suricata to detect and respond to potential threats in real-time.</p>
+                </article>
+                <article>
+                    <h3>First Person View Drone</h3>
+                    <p>Built and flown an FPV drone Developed a drone with a first-person view camera for aerial surveillance and inspection purposes.</p>
+                </article>
+            </section>
+            <section id="contact">
+                <h2>Contact</h2>
+                <p>If you would like to get in touch with me, please feel free to reach out via email or connect with me on LinkedIn.</p>
+                <ul>
+                    <li>Email: <a href="mailto:kaushal.rana@example.com">kaushal.rana@example.com</a></li>
+                    <li>LinkedIn: <a href="https://www.linkedin.com/in/kaushal-rana">https://www.linkedin.com/in/kaushal-rana</a></li>
+                    <li>GitHub: <a href="https://github.com/kaushalrana">https://github.com/kaushalrana</a></li>
+                    <li>Contact: <a href="tel:+1234567890">+1 (234) 567-890</a></li>
+                </ul>
         </main>
+         <footer>
+            <p>&copy; 2026 Kaushal Rana. All rights reserved.</p>
+        </footer>
     </body>
 </html>
 

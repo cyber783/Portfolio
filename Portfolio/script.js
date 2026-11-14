@@ -1,4 +1,4 @@
-//'''''''''''''''''''''' Rain Effect '''''''''''''''''''''//
+// ===== TYPEWRITER EFFECT ===== down to typeNextChar();
 const canvas = document.getElementById("matrixRain");
 const ctx = canvas.getContext("2d");
 const fullText = "Security Researcher · Web Developer · Ai Enthusiast";

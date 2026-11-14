@@ -1,8 +1,8 @@
 //'''''''''''''''''''''' Rain Effect '''''''''''''''''''''//
-const typedEl = document.getElementById("typedText");
 const canvas = document.getElementById("matrixRain");
 const ctx = canvas.getContext("2d");
 const fullText = "Security Researcher · Web Developer · Ai Enthusiast";
+
 
 function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -33,6 +33,8 @@ function drawRain() {
 
 setInterval(drawRain, 50); // redraws 
 let charIndex = 0;
+
+const typedEl = document.getElementById("typedText");
 function typeNextChar(){
     if (charIndex < fullText.length){
         typedEl.textContent += fullText[charIndex];

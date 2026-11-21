@@ -96,9 +96,49 @@ if (reduceMotion) {
 // ===== MOBILE MENU TOGGLE =====
 const menuBtn = document.getElementById("menuBtn");
 const navLinks = document.getElementById("navLinks");
-menuBtn.addEventListener("click", () => 
-    navLinks.classList.toggle("open"));
-navLinks.addEventListener("click", () => navLinks.
-    classList.remove("open")); //close menu on link click
+menuBtn.addEventListener("click", () => navLinks.classList.toggle("open"));
+navLinks.addEventListener("click", () => navLinks.classList.remove("open")); //close menu on link click
 
+// ===== SCHROLLING BAR =====
+const scrollProgress = document.getElementById("scrollProgress");
+window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scroll;;Height - window.innerHeight;
+    scrollProgress.style.width = (docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + "%";
+});
 
+// ===== SECTIONS ARE REVEALED AFTER SCRPLL =====
+const revealEls = document.querySelectorAll(".reveal")
+if (reduceMotion) {
+    revealEls.forEach((el) => el.classList.add("visible"));
+
+} else {
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => { 
+            if (entry.isIntersecting) { 
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+    revealEls.forEach((el) => revealObserver.observe(el));
+}
+
+// ==== HOLOGRAM ====
+const hologram = document.getElementById("hologram");
+function startTalking() {
+    hologram.classList.add("talking");
+    talkLabel.textContent = "Stop";
+    speechSynthesis.textContent = aiMessage;
+    speechSynthesis.style.color = "e6fff5";
+}
+function stopTalking() {
+    hologram.classList.remove("talking");
+    talkLabel.TextContent = "Talk to me"
+    if (stopTimer) { clearTimeout(stopTimer);
+        stopTimer = null;
+    }
+}
+
+// ==== FOOTER YEAR ====
+document.getElementById("year").textContent = newDate().getFullYear();

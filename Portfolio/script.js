@@ -77,14 +77,12 @@ function drawRain() {
 if (!reduceMotion) setInterval (drawRain, 50);
 
 // ==== TYPEERITER SUBTITLE ====
-setInterval(drawRain, 50); // redraws 
-let charIndex = 0;
-
 const typedEl = document.getElementById("typedText");
 const fullText = "Security Researcher · Web Developer · Ai Enthusiast";
 if (reduceMotion) {
     typedEl.textContent = fullText;
 }else {
+    let charIndex = 0;
     function typeNextChar(){
         if (charIndex < fullText.length){
         typedEl.textContent += fullText[charIndex];

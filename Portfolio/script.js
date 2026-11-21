@@ -40,22 +40,24 @@ function runBootSequence() {
 }
 runBootSequence();
 
-// ===== TYPEWRITER EFFECT ===== down to typeNextChar();
+// ===== BACKGROUND MATRIX RAIN EFFECT =====
+
 const canvas = document.getElementById("matrixRain");
 const ctx = canvas.getContext("2d");
 const fullText = "Security Researcher · Web Developer · Ai Enthusiast";
+const characters ="01//''?''H4c{3r?$#0123E}xPlo!t$&%#01010101@#$010100053(ur!7y010?110?001?"; //display characters
+const fontSize =16;
+let drops = [];
 
 
 function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    drops = Array(Math.floor(canvas.width / fontSize)).fill(1);
 }
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-const characters ="01//''?''H4c{3r?$#0123E}xPlo!t$&%#01010101@#$010100053(ur!7y010?110?001?"; //display characters
-const fontSize =16;
-let drops = Array(Math.floor(canvas.width / fontSize)).fill(1);
 
 function drawRain() {
   ctx.fillStyle = "rgba(2, 9, 64, 0.05)";

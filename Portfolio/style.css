@@ -83,6 +83,7 @@ header {
   z-index: 1;
 }
 .logo { font-size: 22px; font-weight: bold; color: var(--accent); animation: pulseGlow 2.5s ease-in-out infinite;}
+
 nav a::after {
   content: "";
   position: absolute;

@@ -241,6 +241,16 @@ section h2 {
 }
 section h3 { color: var(--muted); font-size: 16px; margin-top: 28px; }
 
+/* ==== SCROLL REVEAL ==== */
+.reveal {
+  opacity: 0; 
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+opacity: 1; transform: none; 
+}
+
 /* ===== SKILLS LIST ===== */
 #skills ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
 #skills li {

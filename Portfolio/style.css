@@ -291,6 +291,7 @@ article:hover {
   content: "_";
   animation: blinkCursor 1s step-end infinite;
 }
+/* ==== KEYFRAMES ==== */
 @keyframes blinkCursor { 50% { opacity: 0; } }
 
 /* ===== GLOW ANIMATION ===== */
@@ -299,15 +300,51 @@ article:hover {
   50%      { text-shadow: 0 0 17px var(--accent); }
 }
 
+@keyframes blink {
+  0%, 94%, 100% { transform: scaleY(1); }
+  97% { transform: scaleY(0.08); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+50% { opacity: 0.35; }
+}
+
+@keyframes talk {
+  0% { transform: scaleY(0.6);}
+  20% { transform: scaleY(3.2); }
+  40% { transform: scaleY(1.2); }
+  60% { transform: scaleY(4); }
+  80% { transform: scaleY(1.8); }
+  100% { transform: scaleY(0.6);}
+}
+
+/* ==== GLITCH KEYFRAME ==== */
+@keyframes glitchTop {
+  0%, 94%, 100% {opacity: 0; clip-path: inset(0 0 100% 0); 
+  transform: translate(0); }
+  95% { opacity: 0.8; clip-path: inset( 0 0 60% 0 );
+  transform: translate(-2px,-1px);} 
+  97% { opacity: 0.8; clip-path: inset(40% 0 20% 0); trnasform: translate(2px, 1px)}
+}
+
+@keyframes glitchBottom {
+  0%, 93%, 100% {opacity: 0; clip-path: inset(100% 0 0 0); 
+  transform: translate(0); }
+  94% { opacity: 0.8; clip-path: inset( 60% 0 0 0 );
+  transform: translate(2px, 1px);} 
+  97% { opacity: 0.8; clip-path: inset(40% 0 20% 0); trnasform: translate(-2px, -1px)}
+}
+
+
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
 }
 
-.card {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
+/* The hamburger menu button will appear below 700px */
+
+.menu-btn { display: none; }
+
 
 /* ===== PHONE LAYOUT DESIGN ===== "If the screen is 700px wide or less, then use these rules." */
 
@@ -346,10 +383,6 @@ article:hover {
     section { padding: 32px 20px; }
 
 }
-
-/* The hamburger menu button will appear below 700px */
-
-.menu-btn { display: none; }
 
 /* ===== FOOTER ===== */
 footer {

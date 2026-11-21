@@ -36,7 +36,9 @@ function runBootSequence() {
             setTimeout(typeLine, 200);
         }
     }
+    typeLine();
 }
+runBootSequence();
 
 // ===== TYPEWRITER EFFECT ===== down to typeNextChar();
 const canvas = document.getElementById("matrixRain");

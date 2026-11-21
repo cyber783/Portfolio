@@ -60,7 +60,7 @@ window.addEventListener("resize", resizeCanvas);
 
 
 function drawRain() {
-  ctx.fillStyle = "rgba(2, 9, 64, 0.05)";
+  ctx.fillStyle = "rgba(6, 19, 15, 0.08)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "#0aad43";
   ctx.font = fontSize + "px monospace";

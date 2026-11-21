@@ -1,39 +1,335 @@
-/* Animation and glowing Effects */
+/* ===== COLOR PALETTE ===== */
+:root {
+  --bg: #06130f;
+  --panel: #0c211a;
+  --text: #e6fff5;
+  --muted: #9bbfb2;
+  --accent: #00e08a;
+  --glitch-a: #ff2a6d;
+  --glitch-b: #00e5ff;
+  --radius: 10px;
+}
 
-#matrixRain {
+/* ===== RESET AND BASE STYLES ===== */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; height: 100%;}
+body {
+  height: 100%;        /* so percentage heights have something solid to measure against */
+  margin: 0;
+  position: relative;
+  z-index: 0;
+  overflow-x: hidden;
+  font-family:Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus-visible, button:focus-visible{
+  outline-offset: 3px;
+  border-radius:4px;
+}
+
+/* ===== BOOT SEQUENCE ===== */
+#bootScreen {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: -1;     /*behind the site*/  
-  opacity: 0.22;   /*subtitle*/   
+  inset: 0;
+  background: var(--bg);
+  color: var(--accent);
+  font-family: "Courier New", monospace;
+  padding: 24px;
+  z-index: 2000;
+  transition: opacity 0.6s ease;
 }
-#typedText::after {
-    content: "_";
-    animation: blinkCursor 1s step-end infinite;
-}
-@keyframes blinkCursor {
-    50% {opacity: 0;}
+#bootScreen.hide { opacity: 0; pointer-events: none;}
+#bootText { white-space: pre-wrap; margin: 0; }
+#bootText::after { content: "_"; animation: blinkCursor 1s step-end infinite; }
+
+/* ===== SCROLLING PROGRESS ===== */
+#scrollProgress {
+  position: fixed;
+  top: 0; 
+  left: 0;
+  height: 4px;
+  width: 0%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  z-index: 1000;
+  transition: width 0.1s ease-out;
 }
 
+/* ===== MATRIX RAIN BACKGROUND (the one and only rule for it) ===== */
+#matrixRain {
+  display: block;        /* canvases default to inline, which can cause odd sizing */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;          /* viewport width, more reliable than 100% here */
+  height: 100vh;         /* viewport height, same reason */
+  z-index: -1;
+  opacity: 0.22;
+  pointer-events: none;  /* lets clicks pass through it to your real content */
+}
+/* ===== HEADER AND NAV ===== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 1px solid #14382c;
+  position: relative;
+  z-index: 1;
+}
+.logo { font-size: 22px; font-weight: bold; color: var(--accent); animation: pulseGlow 2.5s ease-in-out infinite;}
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%; 
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+
+}
+/* header h1 {
+  font-size: 22px;
+  margin: 0;
+  color: var(--accent);
+  animation: pulseGlow 2.5s ease-in-out infinite;
+} */
+nav a { margin-left: 20px; color: var(--text); font-weight: bold; }
+nav a:hover { color: var(--accent); }
+
+/*==== bot ==== */
+.bot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 60px 24px;
+  position: relative;
+  z-index: 1;
+
+}
+
+.bot-text { flex: 1 1 320px; }
+.small-title { margin: 0; color: var(--muted); }
+.subtitle { font-size: 20px; color: var(--muted); min-height: 28px; }
+.bot-ai {flex: 1 1 260px; max-width: 320px; text-align: center;}
+.bot-ai svg{ width: 100%; height: auto; }
+.speech { background: var(--panel); border-radius: var(--radius); padding: 10px 14px; color: var(--muted); font-size: 14px; }
+
+/* ==== HOLOGRAM ==== */
+.hologram { animation: flicker 6s infinite; }
+.hologram.talking { animation: flicker 1.4s infinite; }
+
+.ring, .core, .scanline {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.ring-1 { animation: spin 10s linear infinite; }
+.ring-2 { animation: spin 14s linear infinite reverse; }
+.ring-3 { animation: spin 7s linear infinite; }
+
+.core { animation: corePulse 2.2s ease-in-out infinite; }
+.hologram.talking .core { animation: coreTalk 0.3s infinite; }
+
+.scanline { animation: scan 2.6s ease-in-out infinite; }
+
+.orbit { 
+  transform-box: view-box; /* it will rotate around the SVG's (core) own grid,not in own shape box */
+  transform-origin: 150px 150px;
+  animation: spin 6s linear infinite;
+}
+.orbit-2 {
+  animation-duration: 9s;
+  animation-direction: reverse;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fliker {
+  0%, 93%, 96%, 100% { opacity: 1; }
+  94% {opacity: 0.4;}
+  95% {opacity: 0.85;}
+  97% {opacity: 0.55;}
+}
+
+@keyframes corePulse { 0%, 100% {transform: scale(1);} 50% {transform: scale(1.15);} }
+@keyframes coreTalk { 0%, 100% { transformation: scale(1);} 50% {transform: scale(1.4); } }
+@keyframes scan {
+  0% {transform: translatrY(0); opacity: 0.6;}
+  50% {opacity: 0.1;}
+  100% {transform: translateY(180px); opacity: 0.6;}
+}
+
+/* ==== AI SPHARE GLOW ==== */
+.glow-stop { animation: glowShift 2.4s ease-in-out infinite alternate; }
+@keyframes glowShift { 
+  from { stop-color: #00e08a; stop-opacity: 1; }
+  to { stop-color: #5be6ff; stop-opacity: 0.7; }
+}
+
+/* ==== GLITCH NAME EFFECT ==== */
+.glitch {
+  position: realtive;
+  display: inline-block;
+  font-size: 56px;
+  color: var(--accent);
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+.glitch::before, .glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%;
+  opacity: 0;
+}
+.glitch::before { color: var(--glitch-a); animation: glitchTop 3.5s infinite; }
+.glitch::after { color: var(--glitch-b); animation: glitchBottom 3.5s infinite; }
+
+/* ==== BUTTONS ==== */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: var(--accent);
+  color: #04120d;
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+}
+.btn:hover {
+  transform: translateY(-2px); 
+  box-shadow: 0 0 14px var(--accent); text-decoration: none; 
+}
+.btn-outline {
+  background: transparent; 
+  color: var(--accent);
+}
+
+/* ===== SECTIONS ===== */
+section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 48px 24px;
+  position: relative;
+  z-index: 1;
+}
+section h2 {
+  font-size: 28px;
+  border-left: 4px solid var(--accent);
+  padding-left: 12px;
+}
+section h3 { color: var(--muted); font-size: 16px; margin-top: 28px; }
+
+/* ===== SKILLS LIST ===== */
+#skills ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+#skills li {
+  background: var(--panel);
+  border: 1px solid #14382c;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+/* ===== CARDS (Experience and Projects) ===== */
 article {
-/*keeping the existed styles for the article element*/
-transition: box-shadow 0.3s ease, transform 0.3s ease;
+  background: var(--panel);
+  border: 1px solid #14382c;
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
+article h3 { margin-top: 0; color: var(--text); font-size: 18px; }
 article:hover {
-    box-shadow: 0 0 18px var(--accent);
-    transform: translateY(-4px); /*mooving cards slightly*/
+  box-shadow: 0 0 18px var(--accent);
+  transform: translateY(-4px);
 }
-header h1{
-    animation: pulseGlow 2.5s ease-in-out infinite;
+
+/* ===== TYPEWRITER CURSOR ===== */
+#typedText::after {
+  content: "_";
+  animation: blinkCursor 1s step-end infinite;
 }
-@keyframes pulseGlow
-{
-    0%, 100% { text-shadow: 0 0 6px var(--accent); }
-    50% { text-shadow: 0 0 17px var(--accent); }
+@keyframes blinkCursor { 50% { opacity: 0; } }
+
+/* ===== GLOW ANIMATION ===== */
+@keyframes pulseGlow {
+  0%, 100% { text-shadow: 0 0 6px var(--accent); }
+  50%      { text-shadow: 0 0 17px var(--accent); }
 }
-@media(prefers-reduced-motion: reduce) {
-    * {
-        animation: none!important;
-        transition: none !important;
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+.card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* ===== PHONE LAYOUT DESIGN ===== "If the screen is 700px wide or less, then use these rules." */
+
+@media (max-width: 700px) {
+    header { position: relative;}
+
+    .menu-btn {
+        display: black;
+        background: transparent;
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        border-radius: var(--radius);
+        padding: 4px 10px;
+        font-size: 18px;
+        cursor: pointer;
     }
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--bg);
+      padding: 10px 24px 16px;
+      border-bottom: 1px solid #14382c;
+
+    }
+
+    .nav-links.open { display: flex;}
+    .nav-links a { margin: 10px 0;}
+
+    header h1 {font-size: 18px; }
+    section h2 { font-size: 22px; }
+    section { padding: 32px 20px; }
+
+}
+
+/* The hamburger menu button will appear below 700px */
+
+.menu-btn { display: none; }
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  padding: 30px 24px;
+  color: var(--muted);
+  border-top: 1px solid #14382c;
+  position: relative;
+  z-index: 1;
 }

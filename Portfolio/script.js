@@ -16,19 +16,20 @@ const fontSize =16;
 let drops = Array(Math.floor(canvas.width / fontSize)).fill(1);
 
 function drawRain() {
-    // A slightly see black rectangle frames
-    ctx.fillStyle = "rgba(2, 9, 64, 0.05)"; // Background Colour
-    ctx.fillRect(0,0, canvas.width, canvas.height);
-    ctx.fillStyle = "#0aad43"; //text color
-    ctx.font = fontSize + "px monospace";
+  ctx.fillStyle = "rgba(2, 9, 64, 0.05)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "#0aad43";
+  ctx.font = fontSize + "px monospace";
 
-    drops.forEach((x, i) => {
-        const char = characters[Math.floor(Math.random() * characters.length)];
+  drops.forEach((y, i) => {
+    const char = characters[Math.floor(Math.random() * characters.length)];
+    ctx.fillText(char, i * fontSize, y * fontSize);
 
-        ctx.fillText(char, i * fontSize, x * fontSize);
-
-        if (x * fontSize > canvas.height && Math.random() > 0.975) drops[i]++;
-    });
+    if (y * fontSize > canvas.height && Math.random() > 0.975) {
+      drops[i] = 0;     // reset this column back to the top
+    }
+    drops[i]++;         // always move down one step, every frame
+  });
 }
 
 setInterval(drawRain, 50); // redraws 
@@ -44,3 +45,14 @@ function typeNextChar(){
     }
 }
 typeNextChar();
+
+// ===== MOBILE MENU TOGGLE =====
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+menuBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
+});
+
+navLinks.addEventListener("click", () => { navLinks.
+    classList.remove("open"); //close menu on link click
+});

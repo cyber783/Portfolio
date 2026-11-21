@@ -1,46 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
     <head >
-        <link rel="stylesheet" href="style.css">
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>KAUSHAL RANA - Portfolio</title>
+        <meta name="description" content="Portfolio of Kaushal Rana : Ethical Hacker, Security Analyst, and Web Developer. Explore my skills, experience, and projects in cybersecurity, web development, and AI.">
+        <link rel = "icon" href = "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+        <link rel="stylesheet" href="style.css">
     </head>
+
     <body>
+
+        <!--It Play the all text once on load, then fades away -->
+        <div id="bootScreen"><pre id="bootText"></pre></div>
+
+        <!--Fills all things as it while visitor scrolls down-->
+        <div id="scrollProgress"></div>
+
         <canvas id="matrixRain"></canvas>
 
         <header class="cyb">
             <a href="#home" class="logo">&lt;ECKR/&gt;</a>
-            <nav id="navLinks" class="nav-links">
-                <button id="menuBtn" class="menu-btn">
-                <a href="#about">About</a></button>
-                <button id="menuBtn" class="menu-btn">
-                <a href="#skills">Skills</a></button>
-                <button id="menuBtn" class="menu-btn">
-                <a href="#experience">Experience</a></button>
-                <button id="menuBtn" class="menu-btn">
-                <a href="#projects">Projects</a></button>
-                <button id="menuBtn" class="menu-btn">
-                <a href="#contact">Contact</a></button>
+            <button id="menuBtn" class="menu-btn" aria-label="Open menu">☰</button>
+
+            <nav id="navLinks" class="nav-links">                
+                <a href="#about">About</a>                
+                <a href="#skills">Skills</a>              
+                <a href="#experience">Experience</a>                
+                <a href="#projects">Projects</a>              
+                <a href="#contact">Contact</a>
                 
-            </nav>
-            
+            </nav>            
         </header>
 
         <main>
             <section id="home" class="bot">
                 <div class="bot-text">
                     <p class="small-title">Hello, I am</p>
-                    <h1>Kaushal Rana</h1>
+                    <h1 class="glitch" data-text="Kaushal Rana">Kaushal Rana</h1>
                     <p class="subtitle" id="typedText"></p>
+                    <a href="#projects" class="btn">View My Works</a>
+                    <a href="#contact" class="btn-outline">Contact Me</a>
+                 </div>
+        <!-- hologram animation of AI bot -->
+                 <div class="bot-ai">
+                    <div class="hologram" id="hologram">
+                        <svg viewBox="0 0 300 300" role="img" aria-label="Holographic AI Bot assitant core">
+                            <defs>
+                                <radialGradient id="coreGradient" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#e6fff5"/>
+                                    <stop class= "glow-stop" offset="40%" stop-color="#00e08a"/>
+                                    <stop offset="100" stop-color="#00e08a" stop-opacity="0"/>
+                                </radialGradient>
+                                <linearGradient id="beamGradient" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#00e08a" stop-opacity="0.55"/>
+                                    <stop offset="100%" stop-color="#00e08a" stop-opacity="0"/>
+                                </linearGradient>
+                            </defs>
+
+                            <!-- PROJECTION BEAM AND BASE -->
+                             <polygon points = "110, 290 190, 290 225, 150 75, 150" fill = "url(#beamGradient)"/>
+                             <ellipse cx="150" cy="292" rx="70" ry="10" fill="#0c211a" stroke="#00e08a" stroke-width="2"/>
+
+                            <!-- TITLE ORBIT RINGS -->
+                             <ellipse class="ring ring-1" cx="150" cy="150" rx="110" ry="38" fill="none" stroke="#00eo8a" stroke-width="1.5" opacity="0.5"/>
+                             <ellipse class="ring ring-2" cx="150" cy="150" rx="85" ry="85" fill="none" stroke="#5be6ff" stroke-width="1" opacity="0.35"/>
+                             <ellipse class="ring ring-3" cx="150" cy="150" rx="65" ry="24" fill="none" stroke="#00e08a" stroke-width="1.5" opacity="0.5"/>
+
+                            <!-- LINE SCANNING -->
+                             <rect class="scanline" x="60" y="55" width="180" height="2" fill="#00e08a" opacity="0.6"/>
+
+                            <!-- CORE GLOW -->
+                             <circle id="hologramCore" class="core" cx="150" cy="150" r="32" fill="url(#coreGradient)"/>
+
+                            <!-- ORBITING PARTICLES -->
+                             <g class="orbit orbit-1"><circle r="3" cx="150" cy="150" trnasform="translate(95, 0)" fill="#5be6ff"/></g>
+                        </svg>
+                    </div>
+                    <p id="speech" class="speech">Press the button and I will say hello.</p>
+                    <button id="talkBtn" class="btn"><span id="talkLabel">Talk to me</span></button>
                  </div>
             </section>
-            <p class="subtitle" id="matrixRain"></p>
-            <section id="about">
+            
+            <section id="about" class="reveal">
                 <h2>About Me</h2>
                 <p>I work in ethical hacking, security analysis and network operations, with hands-on experience in intrusion detection, incident response and web application testing. I also enjoy graphic design and web development.</p>
                 <p>I am passionate about technology, artificial intelligence, cyber security, robotics, and software development. I am continuously learning programming, AI, electronics, and automation to understand how technology works and build innovative real-world solutions. My goal is to become a skilled technology developer, turn creative ideas into practical projects, and contribute to the future of AI and robotics.</p>
             </section>
-            <section id="skills">
+            <section id="skills" class="reveal">
                 <h2>Skills</h2>
                 <ul>
                     <li>Security Analysis</li>
@@ -70,7 +117,7 @@
                     <li>Canva</li>
                 </ul>
             </section>
-            <section id="experience">
+            <section id="experience" class="reveal">
                 <h2>Training &amp; Certifications</h2>
                 <article>
                     <h3>Ethical Hacking Training - Hackingflix &amp; Deepak Cyber Solutions</h3>
@@ -84,8 +131,10 @@
                     </ul>
                 </article>
             </section>
-            <section id="projects">
+
+            <section id="projects" class="reveal">
                 <h2>Projects</h2>
+                <div class="cards">
                 <article>
                     <h3>Portfolio Website - AI Chatbot Assistant</h3>
                     <p>Built this site from the scratch: HTML, CSS, Javascript on the frontend and with python Flask Flask backend serving an animated AI chatbot with text-to-speech capabilities. Version-controlled with Git and deployed on a cloud platform. The AI chatbot is designed to provide information about my skills, experience, and projects, and can answer questions related to my portfolio.</p>
@@ -108,8 +157,9 @@
                     <h3>First Person View Drone</h3>
                     <p>Built and flown an FPV drone Developed a drone with a first-person view camera for aerial surveillance and inspection purposes.</p>
                 </article>
+                </div>
             </section>
-            <section id="contact">
+            <section id="contact" class="reveal">
                 <h2>Contact</h2>
                 <p>If you would like to get in touch with me, please feel free to reach out via email or connect with me on LinkedIn.</p>
                 <ul>
@@ -119,9 +169,11 @@
                     <li>Contact: <a href="tel:+1234567890">+1 (234) 567-890</a></li>
                 </ul>
         </main>
+
          <footer>
             <p>&copy; 2026 Kaushal Rana. All rights reserved.</p>
         </footer>
+
         <script src="script.js"></script>
     </body>
 </html>

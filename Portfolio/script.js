@@ -44,7 +44,6 @@ runBootSequence();
 
 const canvas = document.getElementById("matrixRain");
 const ctx = canvas.getContext("2d");
-const fullText = "Security Researcher · Web Developer · Ai Enthusiast";
 const characters ="01//''?''H4c{3r?$#0123E}xPlo!t$&%#01010101@#$010100053(ur!7y010?110?001?"; //display characters
 const fontSize =16;
 let drops = [];
@@ -71,15 +70,19 @@ function drawRain() {
 
     if (y * fontSize > canvas.height && Math.random() > 0.975) {
       drops[i] = 0;     // reset this column back to the top
+      drops[i]++;         // always move down one step, every frame
     }
-    drops[i]++;         // always move down one step, every frame
   });
 }
+if (!reduceMotion) setInterval (drawRain, 50);
 
+// ==== TYPEERITER SUBTITLE ====
 setInterval(drawRain, 50); // redraws 
 let charIndex = 0;
 
 const typedEl = document.getElementById("typedText");
+const fullText = "Security Researcher · Web Developer · Ai Enthusiast";
+
 function typeNextChar(){
     if (charIndex < fullText.length){
         typedEl.textContent += fullText[charIndex];

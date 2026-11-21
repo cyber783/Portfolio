@@ -352,7 +352,7 @@ article:hover {
     header { position: relative;}
 
     .menu-btn {
-        display: black;
+        display: blOck;
         background: transparent;
         border: 1px solid var(--accent);
         color: var(--accent);
@@ -377,7 +377,9 @@ article:hover {
 
     .nav-links.open { display: flex;}
     .nav-links a { margin: 10px 0;}
-
+    .nav-links a::after { display: none; }
+    .glitch { font-size: 37px; }
+    
     header h1 {font-size: 18px; }
     section h2 { font-size: 22px; }
     section { padding: 32px 20px; }
@@ -393,3 +395,4 @@ footer {
   position: relative;
   z-index: 1;
 }
+

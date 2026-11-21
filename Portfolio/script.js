@@ -82,16 +82,19 @@ let charIndex = 0;
 
 const typedEl = document.getElementById("typedText");
 const fullText = "Security Researcher · Web Developer · Ai Enthusiast";
-
-function typeNextChar(){
-    if (charIndex < fullText.length){
+if (reduceMotion) {
+    typedEl.textContent = fullText;
+}else {
+    function typeNextChar(){
+        if (charIndex < fullText.length){
         typedEl.textContent += fullText[charIndex];
         charIndex++;
         setTimeout(typeNextChar, 70); //wait, then write
-
+        }
     }
+    typeNextChar();
 }
-typeNextChar();
+
 
 // ===== MOBILE MENU TOGGLE =====
 const menuBtn = document.getElementById("menuBtn");

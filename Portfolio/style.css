@@ -223,7 +223,7 @@ nav a:hover { color: var(--accent); }
 }
 .btn-outline {
   background: transparent; 
-  color: var(--accent);
+  color: var(--accent); margin-left: 8px;
 }
 
 /* ===== SECTIONS ===== */

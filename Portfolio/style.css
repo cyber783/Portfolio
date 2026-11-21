@@ -396,3 +396,7 @@ footer {
   z-index: 1;
 }
 
+/* ==== RESPECT "REDUCED MOTION" ==== */
+@media (prefers-reduced-motion: reduce) {
+  *{ animation: nome !important; transition: none !important; }
+}

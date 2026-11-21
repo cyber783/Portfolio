@@ -252,7 +252,13 @@ opacity: 1; transform: none;
 }
 
 /* ===== SKILLS LIST ===== */
-#skills ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+#skills ul { 
+  list-style: none; 
+  padding: 0; 
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 10px; 
+}
 #skills li {
   background: var(--panel);
   border: 1px solid #14382c;

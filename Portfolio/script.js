@@ -1,3 +1,43 @@
+// ===== SHARED: DOES THIS VISITOR PREFER LESS MOTION? ===== 
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduced)").matches;
+
+// ===== BOOT SEQUENCE =====
+const bootScreen =document.getElementById("bootScreen");
+const bootText = document.getElementById("bootText");
+const bootLines = [
+    "booting assistant core ...",
+    "loading profile: Kaushal Rana",
+    "security modules: OK",
+    "render engine: OK",
+    "WELCOME."
+];
+
+function runBootSequence() {
+ if (reducedMotion) { bootScreen.classList.add("hide"); 
+    return;
+ }
+ let lineIndex = 0;
+ let charIndex = 0;
+
+ function typeLine() {
+    if (lineIndex >= bootLines.length) {
+        setTimeout(() => bootScreen.classList.add("hide"), 500);
+        return;
+        }
+        const currentLine = bootLines[lineIndex];
+        if (charIndex < currentLine.length) {
+        bootText.textContent += curentLine[charIndex];
+        charIndex++;
+        setTimeout(typeLine, 30);
+        } else {
+            bootText.textContent += "\n";
+            lineIndex++;
+            charIndex = 0;
+            setTimeout(typeLine, 200);
+        }
+    }
+}
+
 // ===== TYPEWRITER EFFECT ===== down to typeNextChar();
 const canvas = document.getElementById("matrixRain");
 const ctx = canvas.getContext("2d");

@@ -267,6 +267,11 @@ opacity: 1; transform: none;
 }
 
 /* ===== CARDS (Experience and Projects) ===== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+  gap: 20px; 
+}
 article {
   background: var(--panel);
   border: 1px solid #14382c;
